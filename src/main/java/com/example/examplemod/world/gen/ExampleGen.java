@@ -19,7 +19,7 @@ public class ExampleGen
 		for (Biome biome : ForgeRegistries.BIOMES)
 		{
 				ConfiguredPlacement<CountRangeConfig> customConfig = Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 128));
-				biome.addFeature(Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.example_block.getDefaultState(), 10)).withPlacement(customConfig));
+				biome.addFeature(Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.EXAMPLE_BLOCK.get().getDefaultState(), 10)).withPlacement(customConfig));
 		}
 	}
 }

@@ -1,9 +1,11 @@
 {
     "block.examplemod.example_block": "Example Block",
-    "block.examplemod.modelled_block": "Example Modelled Block",
+    "block.examplemod.example_modelled_block": "Example Modelled Block",
+    "block.examplemod.example_tile_entity_block": "Example Tile Entity Block",
     
     "item.examplemod.example_item": "Example Item",
     "item.examplemod.example_food": "Example Food",
+    "item.examplemod.example_advance_item": "Example Advanced Item",
     
     "item.examplemod.example_sword": "Example Sword",
     "item.examplemod.example_pickaxe": "Example Pickaxe",

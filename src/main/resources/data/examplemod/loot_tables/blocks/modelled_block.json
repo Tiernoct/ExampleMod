@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "examplemod:example_block"
+          "name": "examplemod:example_modelled_block"
         }
       ],
       "conditions": [

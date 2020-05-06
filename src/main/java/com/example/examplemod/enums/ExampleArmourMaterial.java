@@ -17,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public enum ExampleArmourMaterial implements IArmorMaterial
 {
 	   EXAMPLE(ExampleMod.MOD_ID + ":example", 20, new int[]{2, 7, 7, 7}, 17, SoundEvents.BLOCK_HONEY_BLOCK_STEP, 1.0F, () -> {
-		      return Ingredient.fromItems(ModItems.example_item);
+		      return Ingredient.fromItems(ModItems.EXAMPLE_ITEM.get());
 		   });
 
 		   private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};

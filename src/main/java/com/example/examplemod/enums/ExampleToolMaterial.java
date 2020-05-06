@@ -12,7 +12,7 @@ public enum ExampleToolMaterial implements IItemTier
 {
 	   EXAMPLE(2, 740, 6.0F, 2.5F, 17, () -> 
 	   {
-	      return Ingredient.fromItems(ModItems.example_item);
+	      return Ingredient.fromItems(ModItems.EXAMPLE_ITEM.get());
 	   });
 
 	   private final int harvestLevel;

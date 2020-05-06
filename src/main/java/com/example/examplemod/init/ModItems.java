@@ -15,59 +15,26 @@ import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(modid = ExampleMod.MOD_ID, bus=Bus.MOD)
-@ObjectHolder(ExampleMod.MOD_ID)
 public class ModItems 
 {
-	//Simple item
-	public static final Item example_item = null;
+	public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, ExampleMod.MOD_ID);
 	
-	//Food
-	public static final Item example_food = null;
+	public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().group(ExampleItemGroup.instance)));
+	public static final RegistryObject<Item> EXAMPLE_FOOD = ITEMS.register("example_food", () -> new Item(new Item.Properties().group(ExampleItemGroup.instance).food(new Food.Builder().hunger(10).saturation(1F).build())));
+	public static final RegistryObject<AdvancedItem> EXAMPLE_ADVANCED_ITEM = ITEMS.register("example_advance_item", () -> new AdvancedItem(new Item.Properties().group(ExampleItemGroup.instance)));
 	
-	//Advanced Item
-	public static final Item example_advanced_item = null;
-	
-	//Tools+Sword
-	public static final Item example_sword = null;
-	public static final Item example_pickaxe = null;
-	public static final Item example_axe = null;
-	public static final Item example_shovel = null;
-	public static final Item example_hoe = null;
-	
-	//Armour
-	public static final Item example_helmet = null;
-	public static final Item example_chestplate = null;
-	public static final Item example_leggings = null;
-	public static final Item example_boots = null;
-	
-	
-	@SubscribeEvent
-	public static void registerItems(final RegistryEvent.Register<Item> itemRegister)
-	{
-		//Simple item
-		itemRegister.getRegistry().register(new Item(new Item.Properties().group(ExampleItemGroup.instance)).setRegistryName("example_item"));
-		//Food
-		itemRegister.getRegistry().register(new Item(new Item.Properties().group(ExampleItemGroup.instance).food(new Food.Builder().hunger(10).saturation(1F).build())).setRegistryName("example_food"));
-		//Advanced item
-		itemRegister.getRegistry().register(new AdvancedItem(new Item.Properties().group(ExampleItemGroup.instance)).setRegistryName("example_advanced_item"));
-		//Tools+Sword
-		itemRegister.getRegistry().register(new SwordItem(ExampleToolMaterial.EXAMPLE, 2, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))).setRegistryName("example_sword"));
-		itemRegister.getRegistry().register(new PickaxeItem(ExampleToolMaterial.EXAMPLE, 1, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))).setRegistryName("example_pickaxe"));
-		itemRegister.getRegistry().register(new AxeItem(ExampleToolMaterial.EXAMPLE, 3, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))).setRegistryName("example_axe"));
-		itemRegister.getRegistry().register(new ShovelItem(ExampleToolMaterial.EXAMPLE, 0, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))).setRegistryName("example_shovel"));
-		itemRegister.getRegistry().register(new HoeItem(ExampleToolMaterial.EXAMPLE, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))).setRegistryName("example_hoe"));
-		
-		//Armour
-		itemRegister.getRegistry().register(new ArmorItem(ExampleArmourMaterial.EXAMPLE, EquipmentSlotType.HEAD, new Item.Properties().group(ExampleItemGroup.instance)).setRegistryName("example_helmet"));
-		itemRegister.getRegistry().register(new ArmorItem(ExampleArmourMaterial.EXAMPLE, EquipmentSlotType.CHEST, new Item.Properties().group(ExampleItemGroup.instance)).setRegistryName("example_chestplate"));
-		itemRegister.getRegistry().register(new ArmorItem(ExampleArmourMaterial.EXAMPLE, EquipmentSlotType.LEGS, new Item.Properties().group(ExampleItemGroup.instance)).setRegistryName("example_leggings"));
-		itemRegister.getRegistry().register(new ArmorItem(ExampleArmourMaterial.EXAMPLE, EquipmentSlotType.FEET, new Item.Properties().group(ExampleItemGroup.instance)).setRegistryName("example_boots"));
-	}
+	public static final RegistryObject<SwordItem> EXAMPLE_SWORD = ITEMS.register("example_sword", () -> new SwordItem(ExampleToolMaterial.EXAMPLE, 2, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))));
+	public static final RegistryObject<PickaxeItem> EXAMPLE_PICKAXE = ITEMS.register("example_pickaxe", () -> new PickaxeItem(ExampleToolMaterial.EXAMPLE, 1, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))));
+	public static final RegistryObject<AxeItem> EXAMPLE_AXE = ITEMS.register("example_axe", () -> new AxeItem(ExampleToolMaterial.EXAMPLE, 3, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))));
+	public static final RegistryObject<ShovelItem> EXAMPLE_SHOVEL = ITEMS.register("example_shovel", () -> new ShovelItem(ExampleToolMaterial.EXAMPLE, 0, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))));
+	public static final RegistryObject<HoeItem> EXAMPLE_HOE = ITEMS.register("example_hoe", () -> new HoeItem(ExampleToolMaterial.EXAMPLE, 1.8F, (new Item.Properties().group(ExampleItemGroup.instance))));
+
+	public static final RegistryObject<ArmorItem> EXAMPLE_HELMET = ITEMS.register("example_helmet", () -> new ArmorItem(ExampleArmourMaterial.EXAMPLE, EquipmentSlotType.HEAD, new Item.Properties().group(ExampleItemGroup.instance)));
+	public static final RegistryObject<ArmorItem> EXAMPLE_CHESTPLATE = ITEMS.register("example_chestplate", () -> new ArmorItem(ExampleArmourMaterial.EXAMPLE, EquipmentSlotType.CHEST, new Item.Properties().group(ExampleItemGroup.instance)));
+	public static final RegistryObject<ArmorItem> EXAMPLE_LEGGINGS = ITEMS.register("example_leggings", () -> new ArmorItem(ExampleArmourMaterial.EXAMPLE, EquipmentSlotType.LEGS, new Item.Properties().group(ExampleItemGroup.instance)));
+	public static final RegistryObject<ArmorItem> EXAMPLE_BOOTS = ITEMS.register("example_boots", () -> new ArmorItem(ExampleArmourMaterial.EXAMPLE, EquipmentSlotType.FEET, new Item.Properties().group(ExampleItemGroup.instance)));
 }
