@@ -1,5 +1,7 @@
 package com.example.examplemod.objects.blocks;
 
+import java.util.stream.Stream;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -15,8 +17,10 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -25,9 +29,17 @@ public class ModelledBlock extends Block
 {
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	
+	private static final VoxelShape SHAPE_N = Stream.of(Block.makeCuboidShape(7, 4, 7, 9, 12, 9),Block.makeCuboidShape(8, 2, 8, 8, 2, 8),Block.makeCuboidShape(7, 8, 3, 9, 10, 7))
+			.reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
 	
+	private static final VoxelShape SHAPE_S = Stream.of(Block.makeCuboidShape(7, 4, 7, 9, 12, 9),Block.makeCuboidShape(8, 2, 8, 8, 2, 8),Block.makeCuboidShape(7, 8, 9, 9, 10, 13))
+			.reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
 	
+	private static final VoxelShape SHAPE_E = Stream.of(Block.makeCuboidShape(7, 4, 7, 9, 12, 9),Block.makeCuboidShape(8, 2, 8, 8, 2, 8),Block.makeCuboidShape(9, 8, 7, 13, 10, 9))
+			.reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
 	
+	private static final VoxelShape SHAPE_W = Stream.of(Block.makeCuboidShape(7, 4, 7, 9, 12, 9),Block.makeCuboidShape(8, 2, 8, 8, 2, 8),Block.makeCuboidShape(3, 8, 7, 7, 10, 9))
+			.reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
 	
 	public ModelledBlock(Properties properties) 
 	{
@@ -41,14 +53,15 @@ public class ModelledBlock extends Block
 		switch(state.get(FACING))
 		{
 			case NORTH:
-				
+				return SHAPE_N;
 			case SOUTH:
-				
+				return SHAPE_S;
 			case EAST:
-				
+				return SHAPE_E;
 			case WEST:
-				
+				return SHAPE_W;
 			default:
+				return SHAPE_N;
 		}
 	}
 	
